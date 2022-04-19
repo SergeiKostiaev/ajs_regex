@@ -1,7 +1,21 @@
-import Validator from '../app';
+import Validator from "../app";
 
-test('должна проверять имя пользователя', () => {
-  const expected = true;
-  const received = Validator.validateUsername('Nastya012_miss-120h');
-  expect(received).toBe(expected);
+test("checkValidator", () => {
+  const username = new Validator("user-123_user");
+  expect(username.validateUsername()).toBeTruthy();
+});
+
+test("checkValidator", () => {
+  const username = new Validator("user-1234_user");
+  expect(username.validateUsername()).toBeFalsy();
+});
+
+test("checkValidator", () => {
+  const username = new Validator("_user-123user-");
+  expect(username.validateUsername()).toBeFalsy();
+});
+
+test("checkValidator", () => {
+  const username = new Validator("Пользователь");
+  expect(username.validateUsername()).toBeFalsy();
 });
